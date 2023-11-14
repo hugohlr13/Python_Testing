@@ -58,3 +58,11 @@ def test_point_deduction(client):
     updated_club_data = response.data.decode()
     expected_points = initial_points - places_to_book
     assert str(expected_points) in updated_club_data
+
+# feature : Implement Points Display Board
+def test_public_points_table(client):
+    response = client.get('/points', follow_redirects=True)
+    assert response.status_code == 200
+    clubs_data = response.data.decode()
+    assert "Simply Lift" in clubs_data
+    assert "13" in clubs_data  
