@@ -25,7 +25,7 @@ def test_purchase_over_points(client):
     flashed_messages = get_flashed_messages()
     assert "You don't have enough points to book 10 places." in flashed_messages
 
-#bug3:BUG: Clubs shouldn't be able to book more than 12 places per competition #4
+#bug3:BUG: Clubs shouldn't be able to book more than 12 places per competition 
 def test_booking_limit_exceeded(client):
     response = client.post('/purchasePlaces', data={
         'club': 'Iron Temple',
@@ -40,3 +40,21 @@ def test_booking_in_past_competition(client):
     response = client.get('/book/Spring Festival/Iron Temple', follow_redirects=True)
     flashed_messages = get_flashed_messages()
     assert "This competition has already passed." in flashed_messages
+
+# bug5:BUG: Point updates are not reflected
+def test_point_deduction(client):
+    club_name = "Iron Temple"
+    competition_name = "Tournoi Test"
+    initial_points = 4  
+    places_to_book = 1
+
+    response = client.post('/purchasePlaces', data={
+        'club': club_name,
+        'competition': competition_name,
+        'places': str(places_to_book)
+    }, follow_redirects=True)
+
+    response = client.post('/showSummary', data={'email' : 'admin@irontemple.com'}, follow_redirects=True)
+    updated_club_data = response.data.decode()
+    expected_points = initial_points - places_to_book
+    assert str(expected_points) in updated_club_data
