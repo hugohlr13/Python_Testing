@@ -35,3 +35,8 @@ def test_booking_limit_exceeded(client):
     flashed_messages = get_flashed_messages()
     assert "You cannot book more than 12 places." in flashed_messages
 
+# bug4:BUG: Booking places in past competitions should not be allowed
+def test_booking_in_past_competition(client):
+    response = client.get('/book/Spring Festival/Iron Temple', follow_redirects=True)
+    flashed_messages = get_flashed_messages()
+    assert "This competition has already passed." in flashed_messages
