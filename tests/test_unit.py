@@ -1,5 +1,5 @@
 import pytest
-from server import app
+from server import app, loadClubs, loadCompetitions
 from flask import get_flashed_messages
 
 @pytest.fixture
