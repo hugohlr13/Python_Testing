@@ -1,5 +1,4 @@
 [run]
-include = server.py
 omit =
     */lib/python3.12/site-packages/*
     */site-packages/*
