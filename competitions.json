@@ -9,6 +9,11 @@
             "name": "Fall Classic",
             "date": "2020-10-22 13:30:00",
             "numberOfPlaces": "13"
-        }
+        },
+        {
+            "name": "Tournoi Test",
+            "date": "2023-12-30 13:30:00",
+            "numberOfPlaces": "10"
+        }        
     ]
 }
