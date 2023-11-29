@@ -25,7 +25,7 @@ def test_insufficient_points_and_past_competition(client):
     # Attempt to register with 15 points
     response = client.post('/purchasePlaces', data={
         'club': 'Simply Lift',
-        'competition': 'Fall Classic',
+        'competition': 'Tournoi Test',
         'places': '15'
     }, follow_redirects=True)
     assert b"You cannot book more than 12 places." in response.data

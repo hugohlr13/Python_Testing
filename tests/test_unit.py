@@ -19,7 +19,7 @@ def test_unknown_email(client):
 def test_purchase_over_points(client):
     response = client.post('/purchasePlaces', data={
         'club': 'Iron Temple',
-        'competition': 'Fall Classic',
+        'competition': 'Tournoi Test',
         'places': '10'
     }, follow_redirects=True)
     flashed_messages = get_flashed_messages()
@@ -29,7 +29,7 @@ def test_purchase_over_points(client):
 def test_booking_limit_exceeded(client):
     response = client.post('/purchasePlaces', data={
         'club': 'Iron Temple',
-        'competition': 'Fall Classic',
+        'competition': 'Tournoi Test',
         'places': '13'
     }, follow_redirects=True)
     flashed_messages = get_flashed_messages()
